@@ -2,9 +2,8 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.177.0/containers
 {
 	"name": "Torch GPU",
-	"build": {
-		"dockerfile": "Dockerfile"
-	},
+	"context": "..",
+	"dockerfile": "Dockerfile",
 	"runArgs": ["--gpus=all"],
 	"extensions": [
 		"ms-python.python",
@@ -13,5 +12,12 @@
 		"esbenp.prettier-vscode",
 		"ms-toolsai.jupyter",
 		"rsip-vision.nvidia-smi-plus"
-	]
+	],
+	"settings": { 
+		"terminal.integrated.shell.linux": "/bin/bash",
+		"python.pythonPath": "/opt/conda/bin/python",
+		"python.linting.enabled": true,
+		"python.linting.pylintEnabled": true,
+		"python.linting.pylintPath": "/opt/conda/bin/pylint",
+	},
 }
