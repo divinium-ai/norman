@@ -6,7 +6,7 @@
 		"dockerfile": "Dockerfile.tf"
 	},
 	"runArgs": ["--gpus=all"],
-	"remoteUser": "tfuser",
+	"remoteUser": "vscode",
 	"extensions": [
 		"ms-python.python",
 		"visualstudioexptteam.vscodeintellicode",
