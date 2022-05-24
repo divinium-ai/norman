@@ -3,7 +3,7 @@
 {
 	"name": "Torch GPU",
 	"context": "..",
-	"dockerfile": "Dockerfile",
+	"dockerFile": "Dockerfile",
 	"runArgs": ["--gpus=all"],
 	"extensions": [
 		"ms-python.python",
@@ -14,10 +14,10 @@
 		"rsip-vision.nvidia-smi-plus"
 	],
 	"settings": { 
-		"terminal.integrated.shell.linux": "/bin/bash",
+		"terminal.integrated.defaultProfile.linux" : "/bin/bash",
 		"python.pythonPath": "/opt/conda/bin/python",
 		"python.linting.enabled": true,
 		"python.linting.pylintEnabled": true,
-		"python.linting.pylintPath": "/opt/conda/bin/pylint",
-	},
+		"python.linting.pylintPath": "/opt/conda/bin/pylint"
+	}
 }
