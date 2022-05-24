@@ -1,5 +1,4 @@
 FROM nvidia/cuda:11.3.1-cudnn8-runtime-ubuntu20.04
-# FROM ubuntu:22.04
 
 LABEL maintainer="Gregory Bryant"
 
@@ -26,9 +25,9 @@ RUN apt-get update \
     && groupadd --gid $USER_GID $USERNAME \
     && useradd -s /bin/bash --uid $USER_UID --gid $USER_GID -m $USERNAME \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME\
-    && chmod 0440 /etc/sudoers.d/$USERNAME
-    # && apt-get clean \
-    # && rm -rf /var/lib/apt/lists/*
+    && chmod 0440 /etc/sudoers.d/$USERNAME \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install miniconda
 ENV CONDA_DIR /opt/conda
@@ -51,4 +50,5 @@ RUN /opt/conda/bin/conda install \
 
 # Switch back to dialog for any ad-hoc use of apt-get
 ENV DEBIAN_FRONTEND=dialog
+ENV PATH=$CONDA_DIR/bin:$PATH
 
