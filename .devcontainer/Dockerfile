@@ -12,9 +12,9 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN groupadd --gid 5000 torchuser \
+RUN groupadd --gid 5000 vscode \
     && useradd --home-dir /home/tfuser --create-home --uid 5000 \
-    --gid 5000 --shell /bin/sh --skel /dev/null torchuser
+    --gid 5000 --shell /bin/sh --skel /dev/null vscode
 
 # Install miniconda
 ENV CONDA_DIR /opt/conda
