@@ -3,10 +3,9 @@
 {
 	"name": "Torch GPU",
 	"build": {
-		"dockerfile": "Dockerfile.tf"
+		"dockerfile": "Dockerfile"
 	},
 	"runArgs": ["--gpus=all"],
-	"remoteUser": "vscode",
 	"extensions": [
 		"ms-python.python",
 		"visualstudioexptteam.vscodeintellicode",
@@ -14,6 +13,5 @@
 		"esbenp.prettier-vscode",
 		"ms-toolsai.jupyter",
 		"rsip-vision.nvidia-smi-plus"
-	],
-	"postCreateCommand": "python3 -m pip install -r requirements.txt"
+	]
 }
