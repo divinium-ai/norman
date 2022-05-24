@@ -1,4 +1,5 @@
-FROM nvidia/cuda:11.3.1-cudnn8-runtime-ubuntu20.04
+# FROM nvidia/cuda:11.3.1-cudnn8-runtime-ubuntu20.04
+FROM ubuntu:22.04
 
 LABEL maintainer="Gregory Bryant"
 
