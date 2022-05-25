@@ -20,7 +20,6 @@
 		"ms-toolsai.jupyter",
 		"rsip-vision.nvidia-smi-plus",
 		"deerawan.vscode-dash",
-		"LittleFoxTeam.vscode-python-test-adapter",
 		"KevinRose.vsc-python-indent",
 		"njpwerner.autodocstring",
 		"aaron-bond.better-comments",
@@ -35,14 +34,12 @@
 		"eamodio.gitlens"
 	],
 	"settings": { 
-		"terminal.integrated.defaultProfile.linux" : "/bin/bash",
+		"terminal.integrated.defaultProfile.linux" : "bash",
 		"python.pythonPath": "/opt/conda/bin/python",
 		"python.linting.enabled": true,
 		"python.linting.pylintEnabled": true,
-		"python.linting.pylintPath": "/opt/conda/bin/pylint",
+		"python.linting.pylintPath": "/opt/conda/bin/pylint"
 
-		"editor.bracketPairColorization.enabled": true,
-		"workbench.colorTheme": "Quiet Light"
 	},
 	"remoteUser": "vscode"
 }
