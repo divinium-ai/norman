@@ -7,7 +7,10 @@
 	"runArgs": [
 		"--gpus=all",
 		"--name=vscode-torch",
-		"--memory=8g"
+		"--memory=8g",
+		"--cap-add=SYS_PTRACE",
+		"--security-opt",
+		"seccomp=unconfined"
 	],
 	"extensions": [
 		"ms-python.python",
@@ -38,7 +41,8 @@
 		"python.linting.pylintEnabled": true,
 		"python.linting.pylintPath": "/opt/conda/bin/pylint",
 
-		"editor.bracketPairColorization.enabled": true
+		"editor.bracketPairColorization.enabled": true,
+		"workbench.colorTheme": "Quiet Light"
 	},
 	"remoteUser": "vscode"
 }

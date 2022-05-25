@@ -25,6 +25,8 @@ RUN apt-get update \
         software-properties-common \
         wget \
         sudo \
+        curl \
+        tree \ 
     && groupadd --gid $USER_GID $USERNAME \
     && useradd -s /bin/bash --uid $USER_UID --gid $USER_GID -m $USERNAME \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME\
@@ -33,10 +35,12 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Rust Install
-RUN curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y
-ENV PATH=$HOME/.cargo/bin:$PATH
-# RUN rustup component add rls rust-analysis rust-src rustfmt clippy
-# RUN cargo install fd-find ripgrep
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain stable -y 
+
+ENV PATH=/root/.cargo/bin:$PATH
+
+RUN rustup component add rls rust-analysis rust-src rustfmt clippy && \
+    cargo install fd-find ripgrep
 
 # Install miniconda
 ENV CONDA_DIR /opt/conda
@@ -56,7 +60,8 @@ RUN /opt/conda/bin/conda install \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
-
+    
+ENV PATH=$CONDA_DIR/bin:$PATH
 # Switch back to dialog for any ad-hoc use of apt-get
 ENV DEBIAN_FRONTEND=dialog
-ENV PATH=$CONDA_DIR/bin:$PATH
+
