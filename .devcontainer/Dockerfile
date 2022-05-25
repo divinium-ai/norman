@@ -17,7 +17,9 @@ ARG USER_GID=$USER_UID
 LABEL maintainer="Gregory Bryant"
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends apt-utils \
+    && apt-get install -y --no-install-recommends \
+        apt-utils \
+        git \
         build-essential \
         software-properties-common \
         wget \
@@ -51,4 +53,3 @@ RUN /opt/conda/bin/conda install \
 # Switch back to dialog for any ad-hoc use of apt-get
 ENV DEBIAN_FRONTEND=dialog
 ENV PATH=$CONDA_DIR/bin:$PATH
-
