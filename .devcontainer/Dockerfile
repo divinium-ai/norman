@@ -10,6 +10,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # will be updated to match your local UID/GID (when using the dockerFile property).
 # See https://aka.ms/vscode-remote/containers/non-root-user for details.
 
+ARG CACHEBUST=1
 ARG USERNAME=vscode
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
@@ -32,7 +33,10 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Rust Install
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+RUN curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y
+ENV PATH=$HOME/.cargo/bin:$PATH
+RUN rustup component add rls rust-analysis rust-src rustfmt clippy
+RUN cargo install fd-find ripgrep
 
 # Install miniconda
 ENV CONDA_DIR /opt/conda
