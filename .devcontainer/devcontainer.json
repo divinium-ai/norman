@@ -40,6 +40,6 @@
 		"python.linting.pylintEnabled": true,
 		"python.linting.pylintPath": "/opt/conda/bin/pylint"
 
-	}
-	// "remoteUser": "vscode"
+	},
+	"remoteUser": "vscode"
 }

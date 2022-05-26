@@ -35,11 +35,17 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Rust Install
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain stable -y 
-ENV PATH=/root/.cargo/bin:$PATH
+ENV RUSTUP_HOME=/opt/rustup
+ENV CARGO_HOME=/opt/cargo
+ENV PATH=/opt/cargo/bin:$PATH
 
-RUN rustup component add rls rust-analysis rust-src rustfmt clippy && \
-    cargo install fd-find ripgrep
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain stable -y  \
+    &&  rustup component add rls \
+        rust-analysis \
+        rust-src \
+        rustfmt \
+        clippy \
+    && cargo install fd-find ripgrep
 
 # Install miniconda
 ENV CONDA_DIR /opt/conda
