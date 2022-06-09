@@ -30,11 +30,13 @@
 		"vadimcn.vscode-lldb",
 		"serayuzgur.crates",
 		"usernamehw.errorlens",
-		"oderwat.indent-rainbow",
-		"eamodio.gitlens"
+		"eamodio.gitlens",
+		"krinql.krinql-vscode",
+		"VisualStudioExptTeam.vscodeintellicode-completions"
 	],
 	"settings": { 
 		"terminal.integrated.defaultProfile.linux" : "bash",
+		"terminal.integrated.fontSize" 18,
 		"python.pythonPath": "/opt/conda/bin/python",
 		"python.linting.enabled": true,
 		"python.linting.pylintEnabled": true,
