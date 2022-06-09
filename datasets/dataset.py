@@ -90,17 +90,20 @@ class Gameofthrone(Dataset):
             '[0-9]',        # remove digits from text
             '[^\w\s]'       # remove punctuation 
             ]
-        txt = re.sub('|'.join(pattern),'',txt)
+        txt = re.sub('|'.join(pattern),'',txt).strip()
         return sorted(set(txt)), txt
-        
-if __name__ == '__main__':
-    # GOT Dataset
-    torch.multiprocessing.set_start_method('spawn')
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    GOT_DATASET = Gameofthrone(device=device)
-    dataloader = DataLoader(GOT_DATASET, batch_size=18, shuffle=True, num_workers=2, pin_memory=False)
-    for i, batch in enumerate(dataloader):
-        print(i, batch)
+    
+    def get_params(self):
+        return (self.vocab_size, self.char_to_idx, self.idx_to_char)
+    
+# if __name__ == '__main__':
+#     # GOT Dataset
+#     torch.multiprocessing.set_start_method('spawn')
+#     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+#     GOT_DATASET = Gameofthrone(device=device)
+#     dataloader = DataLoader(GOT_DATASET, batch_size=18, shuffle=True, num_workers=2, pin_memory=False)
+#     for i, batch in enumerate(dataloader):
+#         print(i, batch)
                 
     # dataset = DrugnameDataset(dir=sources['Drug_txt'])
     # from torch.utils.data import DataLoader
