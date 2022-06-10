@@ -18,7 +18,7 @@ LAYERS     = 1
 
 def train_got():
     dataset = Gameofthrone(device=DEVICE)
-    dataloader = DataLoader(dataset=dataset, batch_size=100, shuffle=False, num_workers=2, pin_memory=False)
+    dataloader = DataLoader(dataset=dataset, batch_size=SEQ_LENGTH, shuffle=False,)
     
     vocab_size, char_to_idx, idx_to_char = dataset.get_params()
     model = GOTLSTM(device=DEVICE, char_to_idx=char_to_idx, idx_to_char=idx_to_char, vocab=vocab_size,  

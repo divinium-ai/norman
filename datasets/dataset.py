@@ -72,7 +72,8 @@ class Gameofthrone(Dataset):
     def __getitem__(self, idx):
         x = self.char_to_idx[self.txt[idx]]
         x = torch.tensor([x])
-        x = F.one_hot(x, num_classes = self.vocab_size).type(torch.FloatTensor)
+        x = F.one_hot(x, num_classes = self.vocab_size)
+        x = x.type(torch.FloatTensor)
         t = self.char_to_idx[self.txt[idx + (idx < (self.__len__() - 1 ))]]
         t = torch.tensor([t])
         return(x.to(self.device), t.to(self.device))

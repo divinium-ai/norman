@@ -6,7 +6,7 @@ import torch.nn.functional as F
 from torch.optim import Adam
 
 class GOTLSTM(nn.Module):
-    def __init__(self, device, char_to_idx, idx_to_char, hidden_dim, vocab, hidden_size, layers=1):
+    def __init__(self, device, char_to_idx, idx_to_char, hidden_dim, vocab, hidden_size, layers = 1):
         super(GOTLSTM, self).__init__()
         self.device = device  
         self.char_to_idx = char_to_idx
@@ -16,11 +16,10 @@ class GOTLSTM(nn.Module):
         self.vocab_size = vocab
         self.hidden_size = hidden_size
         self.layers = layers
-
-        self.lstm = nn.LSTM(vocab, hidden_size, layers, batch_first=True)
-        self.linear = nn.Linear(hidden_size, vocab, bias=True)
+        self.lstm = nn.LSTM(vocab, hidden_size, layers, batch_first = False)
+        self.linear = nn.Linear(hidden_size, vocab, bias = True)
     
-    def forward(self, input, h0=None, c0=None):
+    def forward(self, input, h0=None, c0 = None):
         if h0 == None or c0 == None:
             output, (hn, cn) = self.lstm(input)
         else:
@@ -37,7 +36,7 @@ class GOTLSTM(nn.Module):
         for i in range(length):
             scores, h, c = self.forward(x, h, c)
             prob = nn.functional.softmax(scores, dim = 2).view(self.vocab_size)
-            predict = torch.tensor(list(WeightedRandomSampler(prob, 1, replacement=True)))
+            predict = torch.tensor(list(WeightedRandomSampler(prob, 1, replacement = True)))
             x = F.one_hot(predict, num_classes = self.vocab_size)
             x = x.view(1, 1, self.vocab_size).type(torch.FloatTensor).to(self.device)
             next_char = self.idx_to_char[predict.item()]
