@@ -6,7 +6,7 @@ from torch.optim import Adam
 from  torch.utils.data import DataLoader
 
 from datasets.dataset import Gameofthrone
-from models.got import GOTLSTM
+from models.char_lstm_module import GOTLSTM
 
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -30,8 +30,8 @@ def train_got():
     h = torch.zeros(LAYERS, 1, HIDDEN_DIM).to(DEVICE)
     c = torch.zeros(LAYERS, 1, HIDDEN_DIM).to(DEVICE)
     i = 0
-    for input, target in dataloader:
-        scores, h, c = model(input, (h, c))
+    for inputs, target in dataloader:
+        scores, h, c = model(inputs, (h, c))
         loss = lossfn(scores.squeeze(dim=1), target.squeeze(dim=1))
         
         loss.backward()
@@ -41,8 +41,9 @@ def train_got():
         if i % EPOCH == 0:
             print('---' * 90)
             print(i, ': ', loss)
-            print(model.sample(input[0]))
+            print(model.sample(inputs[0]))
             print('---' * 90)
+        i += 1
     print(f'batches completed: {i}')
 
 if __name__ == "__main__":

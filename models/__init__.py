@@ -1,1 +1,1 @@
-from models import got
+from models import char_lstm_module

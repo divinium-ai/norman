@@ -32,7 +32,10 @@
 		"usernamehw.errorlens",
 		"eamodio.gitlens",
 		"krinql.krinql-vscode",
-		"VisualStudioExptTeam.vscodeintellicode-completions"
+		"VisualStudioExptTeam.vscodeintellicode-completions",
+		"ahmadawais.shades-of-purple",
+		"thenikso.github-plus-theme",
+		"PKief.material-icon-theme"
 	],
 	"settings": { 
 		"terminal.integrated.defaultProfile.linux" : "bash",
