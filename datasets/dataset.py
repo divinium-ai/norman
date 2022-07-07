@@ -12,17 +12,17 @@ from torch.utils.data import DataLoader, Dataset
 from keras.utils import np_utils
 
 sources = {
-    'Drug':'datasets/data/Drugnames/drugnames-20220512-parquet.gzip',
+    'drug':'datasets/data/Drugnames/drugnames-20220512-parquet.gzip',
     'Drug_txt': 'datasets/data/Drugnames/drugname.txt',
-    'Characters': 'datasets/data/marvels/characters-20220517-parquet.gzip',
-    'GOT': 'datasets/data/got/gameofthrones.txt',
-    'MEDICAL': 'datasets/data/medical/wordlist.txt'
+    'characters': 'datasets/data/marvels/characters-20220517-parquet.gzip',
+    'got': 'datasets/data/got/gameofthrones.txt',
+    'medical': 'datasets/data/medical/wordlist.txt'
 }
 class DrugnameDataset(Dataset):
     # https://www.kaggle.com/code/jonsteve/generating-prescription-drug-brand-names/notebook
     # Web Source Url: https://www.rxassist.org/pap-info/brand-drug-list-print
     def __init__(self, seq_length = 8):
-        self.txt = self.preprocess(pd.read_parquet(sources["Drug"]))
+        self.txt = self.preprocess(pd.read_parquet(sources["drug"]))
         self.seq_length  = seq_length
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -72,7 +72,7 @@ class DrugnameDataset(Dataset):
     
 class MarvelCharacters(Dataset):
     def __init__(self, seq_length = 6):
-        self.txt = self.preprocess(pd.DataFrame(pd.read_parquet(sources['Characters'])['name']))
+        self.txt = self.preprocess(pd.DataFrame(pd.read_parquet(sources['characters'])['name']))
         self.seq_length = seq_length
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         
@@ -127,7 +127,7 @@ class Gameofthrone(Dataset):
         self.idx_to_char = {i: char for i, char in enumerate(self.txt)}
     
     def __len__(self):
-        return len(self.txt) - self.seq_length
+        return len(self.txt)
     
     def __getitem__(self, idx):
         x = self.char_to_idx[self.txt[idx]]
@@ -140,7 +140,7 @@ class Gameofthrone(Dataset):
 
     def load_and_transform(self):
         try:
-            txt = open(sources['GOT']).read().replace('\n', '').lower()
+            txt = open(sources['got']).read().replace('\n', '').lower()
         except FileNotFoundError as e:
             raiseExceptions(f'method call load_and_transform GOT file not found msg: {e} path:{dir}')
         
@@ -181,7 +181,7 @@ class MedicalFromFile(Dataset):
         return len(self.txt) - self.seq_length
     
     def load(self):
-        df = pd.DataFrame(pd.read_fwf(sources['MEDICAL'], header=None, names=["term"]) \
+        df = pd.DataFrame(pd.read_fwf(sources['medical'], header=None, names=["term"]) \
             ['term'].apply(lambda txt:self.transforms(txt) if isinstance(txt, str) and len(txt) > 3 else ' '))
         df = df[df.term.str.len() > 3]
         return df['term'].str.cat(sep='#')
