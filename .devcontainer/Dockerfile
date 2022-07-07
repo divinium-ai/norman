@@ -56,8 +56,9 @@ RUN /opt/conda/bin/conda install \
     torchaudio \
     cudatoolkit=11.3 \
     -c pytorch \
-    tensorboard
-
+    
+RUN conda install -c conda-forge tensorboard
+    
 # Clean up
 RUN /opt/conda/bin/conda clean --all \
     && apt-get autoremove -y \
