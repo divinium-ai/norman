@@ -35,6 +35,7 @@ ENV RUSTUP_HOME=/opt/rustup
 ENV CARGO_HOME=/opt/cargo
 ENV PATH=/opt/cargo/bin:$PATH
 
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain stable -y  \
     &&  rustup component add rls \
         rust-analysis \
@@ -55,10 +56,10 @@ RUN /opt/conda/bin/conda install \
     torchaudio \
     cudatoolkit=11.3 \
     -c pytorch \
-    tensorboard \
-   
-   # Clean up
-    && /opt/conda/bin/conda clean --all \
+    tensorboard
+
+# Clean up
+RUN /opt/conda/bin/conda clean --all \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
