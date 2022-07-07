@@ -1,7 +1,5 @@
 FROM nvidia/cuda:11.3.1-cudnn8-runtime-ubuntu20.04
-
 LABEL maintainer="Gregory Bryant"
-
 # Avoid warnings by switching to noninteractive
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -14,8 +12,6 @@ ARG CACHEBUST=1
 ARG USERNAME=vscode
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
-
-LABEL maintainer="Gregory Bryant"
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -49,8 +45,8 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --defau
 
 # Install miniconda
 ENV CONDA_DIR /opt/conda
-RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
-     /bin/bash ~/miniconda.sh -b -p /opt/conda
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh \
+    && /bin/bash ~/miniconda.sh -b -p /opt/conda
 
 # Conda Install for Channel: pytorch
 RUN /opt/conda/bin/conda install \
@@ -59,8 +55,9 @@ RUN /opt/conda/bin/conda install \
     torchaudio \
     cudatoolkit=11.3 \
     -c pytorch \
+    tensorboard \
     && /opt/conda/bin/conda clean --all \
-    #
+    
     # Clean up
     && apt-get autoremove -y \
     && apt-get clean -y \

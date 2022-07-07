@@ -24,7 +24,11 @@ def main():
     parser.add_argument('--lr', type=float, default=0.001, help='desired learning rate')
     parser.add_argument('--epochs', type=int, default=5, help='maxium number of epachs to train for')
     parser.add_argument('--weight_path', type=str, default='/weights/' )
+    # Tensorboard
+    parser.add_argument('--logdir', type=str, help='run directory for tensorboards log files')
+    
     args = parser.parse_args()
+    
     train(args)
     
 def train(args):
