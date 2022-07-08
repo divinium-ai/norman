@@ -55,8 +55,8 @@ RUN /opt/conda/bin/conda install \
     torchvision \
     torchaudio \
     cudatoolkit=11.3 \
-    -c pytorch \
-    && /opt/conda/bin/conda install -c conda-forge tensorboard
+    -c pytorch
+   # && /opt/conda/bin/conda install -c conda-forge tensorboard
     
 # Clean up
 RUN /opt/conda/bin/conda clean --all \
