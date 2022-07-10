@@ -1,71 +1,137 @@
 name: lstm
 channels:
+  - pytorch
   - conda-forge
   - defaults
 dependencies:
   - _libgcc_mutex=0.1=conda_forge
   - _openmp_mutex=4.5=2_gnu
+  - absl-py=1.1.0=pyhd8ed1ab_0
   - aiohttp=3.8.1=py310h5764c6d_1
   - aiosignal=1.2.0=pyhd8ed1ab_0
   - async-timeout=4.0.2=pyhd8ed1ab_0
   - attrs=21.4.0=pyhd8ed1ab_0
+  - blas=1.0=mkl
+  - blinker=1.4=py_1
+  - bottleneck=1.3.5=py310ha9d4c09_0
   - brotlipy=0.7.0=py310h5764c6d_1004
   - bzip2=1.0.8=h7f98852_4
+  - c-ares=1.18.1=h7f98852_0
   - ca-certificates=2022.5.18.1=ha878542_0
   - cachetools=5.0.0=pyhd8ed1ab_0
   - certifi=2022.5.18.1=py310hff52083_0
   - cffi=1.15.0=py310h0fdd8cc_0
   - charset-normalizer=2.0.12=pyhd8ed1ab_0
+  - click=8.1.3=py310hff52083_0
   - cryptography=37.0.2=py310h597c629_0
+  - cudatoolkit=11.3.1=h2bc3f7f_2
+  - cython=0.29.30=py310h6a678d5_0
+  - ffmpeg=4.3=hf484d3e_0
+  - freetype=2.11.0=h70c0345_0
   - frozenlist=1.3.0=py310h5764c6d_1
+  - gensim=4.1.2=py310h295c915_0
+  - giflib=5.2.1=h7b6447c_0
+  - gmp=6.2.1=h295c915_3
+  - gnutls=3.6.15=he1e5248_0
   - google-api-core=2.8.0=pyhd8ed1ab_1
   - google-api-python-client=2.49.0=pyhd8ed1ab_0
   - google-auth=2.6.6=pyh6c4a22f_0
   - google-auth-httplib2=0.1.0=pyhd8ed1ab_0
+  - google-auth-oauthlib=0.4.1=py_2
   - googleapis-common-protos=1.56.1=py310hff52083_0
+  - grpcio=1.45.0=py310h44b9e0c_0
   - httplib2=0.20.4=pyhd8ed1ab_0
   - idna=3.3=pyhd8ed1ab_0
+  - importlib-metadata=4.11.4=py310hff52083_0
+  - intel-openmp=2021.4.0=h06a4308_3561
+  - jpeg=9e=h7f8727e_0
+  - lame=3.100=h7b6447c_0
+  - lcms2=2.12=h3be6417_0
   - ld_impl_linux-64=2.36.1=hea4e1c9_2
   - libffi=3.4.2=h7f98852_5
   - libgcc-ng=12.1.0=h8d9b700_16
+  - libgfortran-ng=7.5.0=ha8ba4b0_17
+  - libgfortran4=7.5.0=ha8ba4b0_17
   - libgomp=12.1.0=h8d9b700_16
+  - libiconv=1.16=h7f8727e_2
+  - libidn2=2.3.2=h7f8727e_0
   - libnsl=2.0.0=h7f98852_0
+  - libpng=1.6.37=hbc83047_0
   - libprotobuf=3.20.1=h6239696_0
   - libstdcxx-ng=12.1.0=ha89aaad_16
+  - libtasn1=4.16.0=h27cfd23_0
+  - libtiff=4.2.0=h85742a9_0
+  - libunistring=0.9.10=h27cfd23_0
   - libuuid=2.32.1=h7f98852_1000
+  - libwebp=1.2.2=h55f646e_0
+  - libwebp-base=1.2.2=h7f8727e_0
   - libzlib=1.2.11=h166bdaf_1014
+  - lz4-c=1.9.3=h295c915_1
+  - markdown=3.3.7=pyhd8ed1ab_0
+  - mkl=2021.4.0=h06a4308_640
+  - mkl-service=2.4.0=py310h7f8727e_0
+  - mkl_fft=1.3.1=py310hd6ae3a3_0
+  - mkl_random=1.2.2=py310h00e6091_0
   - multidict=6.0.2=py310h5764c6d_1
   - ncurses=6.3=h27087fc_1
+  - nettle=3.7.3=hbbd107a_1
+  - numexpr=2.8.3=py310hcea2de6_0
+  - numpy=1.22.3=py310hfa59a62_0
+  - numpy-base=1.22.3=py310h9585f30_0
   - oauth2client=4.1.3=py_0
+  - oauthlib=3.2.0=pyhd8ed1ab_0
+  - openh264=2.1.1=h4ff587b_0
   - openssl=1.1.1o=h166bdaf_0
+  - packaging=21.3=pyhd3eb1b0_0
+  - pandas=1.4.2=py310h295c915_0
+  - pillow=9.0.1=py310h22f2fdc_0
   - pip=22.1.1=pyhd8ed1ab_0
   - protobuf=3.20.1=py310hd8f1fbe_0
   - pyasn1=0.4.8=py_0
   - pyasn1-modules=0.2.7=py_0
   - pycparser=2.21=pyhd8ed1ab_0
   - pydrive=1.3.1=py_1
+  - pyjwt=2.4.0=pyhd8ed1ab_0
   - pyopenssl=22.0.0=pyhd8ed1ab_0
   - pyparsing=3.0.9=pyhd8ed1ab_0
   - pysocks=1.7.1=py310hff52083_5
   - python=3.10.4=h9a8a25e_0_cpython
+  - python-dateutil=2.8.2=pyhd3eb1b0_0
   - python_abi=3.10=2_cp310
+  - pytorch=1.12.0=py3.10_cuda11.3_cudnn8.3.2_0
+  - pytorch-mutex=1.0=cuda
+  - pytz=2022.1=py310h06a4308_0
   - pyu2f=0.1.5=pyhd8ed1ab_0
   - pyyaml=6.0=py310h5764c6d_4
   - readline=8.1=h46c0cb4_0
   - requests=2.27.1=pyhd8ed1ab_0
+  - requests-oauthlib=1.3.1=pyhd8ed1ab_0
   - rsa=4.8=pyhd8ed1ab_0
+  - scipy=1.7.3=py310hfa59a62_0
   - setuptools=62.3.2=py310hff52083_0
   - six=1.16.0=pyh6c4a22f_0
+  - smart_open=5.2.1=py310h06a4308_0
   - sqlite=3.38.5=h4ff8645_0
+  - tensorboard=2.6.0=py_1
+  - tensorboard-data-server=0.6.0=py310h597c629_2
+  - tensorboard-plugin-wit=1.8.1=pyhd8ed1ab_0
   - tk=8.6.12=h27826a3_0
+  - torchaudio=0.12.0=py310_cu113
+  - torchvision=0.13.0=py310_cu113
   - typing-extensions=4.2.0=hd8ed1ab_1
   - typing_extensions=4.2.0=pyha770c72_1
   - tzdata=2022a=h191b570_0
   - uritemplate=4.1.1=pyhd8ed1ab_0
   - urllib3=1.26.9=pyhd8ed1ab_0
+  - werkzeug=2.1.2=pyhd8ed1ab_1
   - wheel=0.37.1=pyhd8ed1ab_0
   - xz=5.2.5=h516909a_1
   - yaml=0.2.5=h7f98852_2
   - yarl=1.7.2=py310h5764c6d_2
+  - zipp=3.8.0=pyhd8ed1ab_0
   - zlib=1.2.11=h166bdaf_1014
+  - zstd=1.4.9=haebb681_0
+  - pip:
+    - keras==2.9.0
+    - keras-utils==1.0.13
 prefix: /home/vscode/.conda/envs/lstm

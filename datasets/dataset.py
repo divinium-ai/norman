@@ -9,7 +9,7 @@ from gensim.parsing.preprocessing import remove_stopwords
 import torch
 import torch.nn.functional as F
 from torch.utils.data import DataLoader, Dataset
-from keras.utils import np_utils
+# from keras.utils import np_utils
 
 sources = {
     'drug':'datasets/data/Drugnames/drugnames-20220512-parquet.gzip',
@@ -44,7 +44,9 @@ class DrugnameDataset(Dataset):
         # X is the input data (time series of 10-character strings)
         X = torch.tensor(np.reshape(dataX, (len(dataX), self.seq_length, 1)))
         # y is the output data (the 11th character to be predicted from the preceding 10)
-        y = torch.tensor(np_utils.to_categorical(dataY))
+        # Y = torch.tensor(dataY).to(self.device)
+        y = torch.tensor(data=dataY, dtype=torch.float32).to(self.device)
+        # y = torch.tensor(np_utils.to_categorical(dataY))
         return  X.to(self.device), y.to(self.device)
     
     def preprocess(self, df):

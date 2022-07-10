@@ -1,6 +1,4 @@
 import argparse
-from tqdm import tqdm
-from email.policy import default
 from logging import raiseExceptions
 import re 
 
@@ -14,28 +12,33 @@ from datasets import dataset as datasources
 
 def main():
     parser = argparse.ArgumentParser()
+   
+    # dataset parameters
     parser.add_argument('--dataset', type=str, default='drug', help='available datasets: drug | characters | got | medical')
     parser.add_argument('--batch_size', type=int, default=64)
     parser.add_argument('--shuffle', type=bool, default=True)
     parser.add_argument('--sequence_length', type=int, default=6, help='length of words to generate')
+
     # Model parameters
     parser.add_argument('--layers', type=int, default=128)
     parser.add_argument('--hidden_dim', type=int, default=256)
-    parser.add_argument('--lr', type=float, default=0.001, help='desired learning rate')
+    parser.add_argument('--lr', type=float, default=0.0005, help='desired learning rate')
+
+    # Training loop params
     parser.add_argument('--epochs', type=int, default=5, help='maxium number of epachs to train for')
     parser.add_argument('--weight_path', type=str, default='/weights/' )
+    parser.add_argument('--device', type=str, default=(torch.device('cuda' if torch.cuda.is_available() else "cpu") ))
+    
     # Tensorboard
     parser.add_argument('--logdir', type=str, help='run directory for tensorboards log files')
-    
     args = parser.parse_args()
-    
     train(args)
     
 def train(args):
     # user the below link for reference in building a standard training loop in torch:
     # https://learning.oreilly.com/library/view/pytorch-pocket-reference/9781492089995/ch05.html#idm45461529327032
-    dataset = Dataset()
     
+    dataset = Dataset()
     # Determine which dataset we are using for training run 
     match args.dataset.lower():
         case 'drug':
@@ -49,28 +52,29 @@ def train(args):
         case _:
             raiseExceptions(f'unknown datasouce {arg.source}')
             
-    dataloader = DataLoader(dataset=dataset, batch_size=args.batch_size, shuffle=args.shuffle)
-    
-    criterion  = nn.CrossEntropyLoss()
-    optimizer  = optim.Adam(lstm.parameters(), lr = args.lr)
+    dataloader = DataLoader(dataset=dataset, batch_size=args.batch_size, shuffle=args.shuffle)  
+    criterion  = nn.NLLLoss()
     # TODO model parameters aren't alinged with proper normancluture correct 
-    model      = lstm.char_lstm(dataset_vocab_length=len(dataset.vocab), lstm_size=args.layers, embeddings=args.layers ).to(args.device)
+    model      = lstm.CharLSTM(dataset_vocab_length=len(dataset.vocab), lstm_size=args.layers, embeddings=args.layers ).to(args.device)
+    optimizer  = optim.Adam(model.parameters(), lr = args.lr)
+    hidden = lstm.CharLSTM.initHidden()
     
-    # Training
+    loss = 0
+    # Training Loop
     for epoch in range(args.epochs):
         for i, batch in enumerate(dataloader):
             input, targets = batch
+            
             optimizer.zero_grad()
             output = model(input)
-            training_loss = criterion(output, targets)
-            training_loss.backward()
+            loss = criterion(output, targets)
+            loss.backward(retain_graph=True)
             optimizer.step()
             
-    # Validation
+        # Validation
 
-    
-    # TODO integrate into training loop for feedback
-    print(f'Epoch: {epoch} - Training Loss: {loss} - Validation Loss: {val_loss}')
+        # TODO integrate into training loop for feedback
+        print(f'Epoch: {epoch} - Training Loss: {loss} - Validation Loss: #TODO:')
     
     # Testing
 

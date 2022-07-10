@@ -35,11 +35,12 @@
 		"VisualStudioExptTeam.vscodeintellicode-completions",
 		"ahmadawais.shades-of-purple",
 		"thenikso.github-plus-theme",
-		"PKief.material-icon-theme"
+		"PKief.material-icon-theme",
+		"donjayamanne.python-extension-pack"
 	],
 	"settings": { 
 		"terminal.integrated.defaultProfile.linux" : "bash",
-		"terminal.integrated.fontSize" :18,
+		"terminal.integrated.fontSize" :15,
 		"python.pythonPath": "/opt/conda/bin/python",
 		"python.linting.enabled": true,
 		"python.linting.pylintEnabled": true,
