@@ -1,1 +1,1 @@
-from models import char_lstm_module
+from models import *

@@ -7,7 +7,8 @@
 	"runArgs": [
 		"--gpus=all",
 		"--name=vscode-torch",
-		"--memory=8g",
+		"--memory=16g",
+		"--cpus=1.5",
 		"--cap-add=SYS_PTRACE",
 		"--security-opt",
 		"seccomp=unconfined"
