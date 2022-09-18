@@ -175,4 +175,6 @@ Cargo.lock
 
 # MSVC Windows builds of rustc generate these, which store debugging information
 *.pdb
-.DS_Store
+.DS_Store./.git/objects/pack/pack-5ca374fe15d4382fb0d34e17b6a9cd8e62830335.pack
+./datasets/data/domains/ALLZONES_zone_full51b7ea3251.gz
+./datasets/data/domains/allzones_zone_full_20220805.gz
